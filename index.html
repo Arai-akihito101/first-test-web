@@ -35,10 +35,6 @@
     文字数：<span id="count">0</span>
   </div>
 
-  function clearText() {
-  document.getElementById("text").value = "";
-  document.getElementById("count").textContent = "0";
-}
   <script>
     const text = document.getElementById("text");
     const count = document.getElementById("count");
@@ -46,6 +42,9 @@
     text.addEventListener("input", () => {
       count.textContent = Array.from(text.value).length;
     });
-  </script>
+ function clearText() {
+  document.getElementById("text").value = "";
+  document.getElementById("count").textContent = "0";
+} </script>
 </body>
 </html>
