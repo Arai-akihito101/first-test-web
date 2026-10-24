@@ -30,10 +30,15 @@
   <p>文章を入力すると文字数を自動で数えます。</p>
 
   <textarea id="text" placeholder="ここに文章を入力"></textarea>
+  <button onclick="clearText()">文章を消去</button>
   <div class="count">
     文字数：<span id="count">0</span>
   </div>
 
+  function clearText() {
+  document.getElementById("text").value = "";
+  document.getElementById("count").textContent = "0";
+}
   <script>
     const text = document.getElementById("text");
     const count = document.getElementById("count");
