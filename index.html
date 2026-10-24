@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文字数カウンター</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      height: 200px;
+      padding: 12px;
+      font-size: 16px;
+    }
+    .count {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>文字数カウンター</h1>
+  <p>文章を入力すると文字数を自動で数えます。</p>
+
+  <textarea id="text" placeholder="ここに文章を入力"></textarea>
+  <div class="count">
+    文字数：<span id="count">0</span>
+  </div>
+
+  <script>
+    const text = document.getElementById("text");
+    const count = document.getElementById("count");
+
+    text.addEventListener("input", () => {
+      count.textContent = Array.from(text.value).length;
+    });
+  </script>
+</body>
+</html>
