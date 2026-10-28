@@ -1,0 +1,111 @@
+:root { color-scheme: light; --ink: #20372d; --green: #254c3c; --muted: #65736b; --line: #d9ded5; --paper: #fff; --warm: #f6f6f1; --accent: #b9c59d; font-synthesis: none; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; background:var(--warm); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; font-size:15px; line-height:1.65; }
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible { outline:3px solid #83a977; outline-offset:3px; }
+a { color:var(--green); }
+.site-header { background:#fdfdf9; border-bottom:1px solid var(--line); }
+.header-inner { max-width:1190px; margin:auto; padding:14px 30px; display:flex; align-items:center; justify-content:space-between; }
+.brand { display:flex; align-items:center; gap:11px; color:var(--ink); font-weight:800; letter-spacing:.04em; font-size:16px; line-height:1.1; text-decoration:none; }
+.brand small { display:block; color:#788a7e; font-weight:600; letter-spacing:.12em; font-size:9px; margin-top:7px; }
+.brand-mark { font-family:serif; font-size:32px; line-height:1; color:var(--green); }
+.header-note { font-size:12px; color:var(--muted); border:1px solid var(--line); padding:3px 10px; }
+.hero { max-width:1190px; padding:76px 30px 63px; margin:auto; }
+.eyebrow, .section-number { font-size:11px; font-weight:800; letter-spacing:.18em; color:#6b846e; }
+.hero h1 { font-family: "Yu Mincho", "Hiragino Mincho ProN", Georgia,serif; font-size:clamp(37px,5vw,60px); line-height:1.33; letter-spacing:.05em; font-weight:600; margin:17px 0 19px; }
+.hero h1 em { font-style:normal; color:#55735c; }
+.hero-copy { max-width:610px; color:#4d5c53; line-height:1.95; margin:0 0 25px; }
+.trust-line { display:flex; flex-wrap:wrap; gap:8px 22px; color:#526459; font-size:12px; font-weight:700; }
+.tool-section { border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#fff; padding:42px max(24px, calc((100vw - 1130px)/2)) 58px; }
+.section-heading { display:flex; gap:17px; align-items:baseline; margin-bottom:24px; }
+.section-heading h2 { font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:29px; font-weight:700; letter-spacing:.04em; margin:0; }
+.tab-list { display:flex; gap:0; border-bottom:1px solid var(--line); margin-bottom:28px; }
+.tab { background:none; border:0; padding:12px 26px; color:#67736b; font-weight:700; border-bottom:3px solid transparent; margin-bottom:-1px; transition:background .15s,color .15s; }
+.tab:hover { background:#f5f7f3; }
+.tab.is-active { color:var(--green); border-bottom-color:var(--green); }
+.workspace { display:grid; grid-template-columns:minmax(310px, 390px) minmax(0,1fr); gap:38px; align-items:start; }
+.controls { padding-top:5px; }
+.form-section-title { display:flex; align-items:center; gap:9px; margin-bottom:18px; }
+.form-section-title.second { margin-top:27px; border-top:1px solid #e5e9e3; padding-top:23px; }
+.form-section-title h3 { font-size:16px; margin:0; }
+.step { display:inline-flex; width:24px; height:24px; align-items:center; justify-content:center; background:var(--green); color:white; border-radius:50%; font-size:11px; }
+.field { margin:0 0 16px; min-width:0; }
+.field label { display:block; margin-bottom:6px; font-weight:700; color:#354c40; font-size:13px; }
+.field input, .field select, .field textarea { display:block; width:100%; min-width:0; padding:11px 12px; color:var(--ink); border:1px solid #c9d2c9; border-radius:3px; background:#fff; font-size:16px; box-shadow:none; }
+.field input:focus, .field select:focus,.field textarea:focus { border-color:#467659; }
+.field textarea { resize:vertical; }
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.field-help { margin:5px 0 0; font-size:12px; color:#67766c; line-height:1.6; }
+.req { background:#f2eee0; color:#7b6243; font-size:10px; padding:1px 5px; font-weight:600; }
+.check-line { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:700; cursor:pointer; }
+.check-line input { accent-color:var(--green); width:17px; height:17px; }
+.actions { margin-top:30px; display:flex; flex-direction:column; gap:11px; }
+.primary-btn { border:1px solid var(--green); background:var(--green); color:#fff; width:100%; text-align:center; padding:14px 13px; font-weight:800; border-radius:3px; min-height:52px; transition:background .1s,transform .1s; }
+.primary-btn:active, .secondary-btn:active { transform:translateY(1px); }
+.primary-btn:hover { background:#386450; }
+.primary-btn span { font-size:20px; margin-right:6px; vertical-align:-1px; }
+.secondary-btn { background:#fff; color:#58685d; border:1px solid var(--line); padding:9px; border-radius:3px; min-height:42px; }
+.secondary-btn:hover { background:#f5f7f4; }
+.status { color:#65766b; font-size:12px; line-height:1.6; min-height:2em; }
+.preview-side { min-width:0; }
+.preview-head { display:flex; justify-content:space-between; align-items:center; gap:10px; padding-bottom:12px; }
+.preview-head strong { font-size:14px; }
+.preview-head p { margin:1px 0 0; color:#7d8b80; font-size:12px; }
+.size-mark { color:#899a8c; font-size:11px; font-weight:700; letter-spacing:.07em; }
+.preview-window { background:#e9ede7; border:1px solid #d8e0d7; min-height:400px; padding:20px 14px; overflow:hidden; }
+.paper-holder { position:relative; margin:0 auto 20px; }
+.print-sheet { position:absolute; top:0; left:0; width:210mm; height:297mm; overflow:hidden; background:white; box-shadow:0 3px 17px #20372d23; transform-origin:top left; padding:12mm; color:#26352d; font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; }
+.print-grid { display:grid; height:273mm; width:186mm; gap:2mm; }
+.print-label { border:.4mm dashed #adb7a9; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:1.8mm; min-width:0; min-height:0; overflow:hidden; break-inside:avoid; }
+.print-label .name { font-size:11pt; font-weight:800; line-height:1.3; overflow-wrap:anywhere; }
+.print-label .variety { font-size:7.8pt; font-weight:600; color:#43594a; line-height:1.3; overflow-wrap:anywhere; }
+.print-label .meta { margin-top:1mm; font-size:6.6pt; line-height:1.3; overflow-wrap:anywhere; }
+.print-label .sequence { font-size:6pt; color:#68786c; }
+.print-grid.small-labels .print-label .name { font-size:8pt; }
+.print-grid.small-labels .print-label .variety { font-size:6.5pt; }
+.print-grid.small-labels .print-label .meta { font-size:5.6pt; }
+.tray-title { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid #a7b2a7; padding-bottom:5mm; margin-bottom:8mm; font-size:12pt; font-weight:800; gap:4mm; }
+.tray-title small { font-size:8pt; font-weight:400; color:#4e6054; }
+.tray-grid { display:grid; width:186mm; gap:1.6mm; }
+.tray-cell { border:1px solid #a5b1a6; display:flex; flex-direction:column; justify-content:space-between; text-align:center; align-items:center; padding:2.2mm 1mm; min-width:0; min-height:0; overflow:hidden; }
+.tray-cell small { align-self:flex-start; font-size:7pt; color:#6b796e; }
+.tray-cell span { font-weight:700; font-size:clamp(8pt,1.5vw,13pt); overflow-wrap:anywhere; max-width:100%; }
+.tray-footer { position:absolute; bottom:12mm; width:186mm; font-size:8pt; color:#657467; border-top:1px solid #aab7aa; padding-top:2mm; }
+.preview-foot { font-size:12px; color:#748177; line-height:1.8; }
+.guide-section, .affiliate-section { max-width:1190px; padding:65px 30px 20px; margin:auto; }
+.guide-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; }
+.guide-grid article { border-top:2px solid #b5c2b5; padding:17px 8px 0 0; }
+.guide-grid h3 { margin:4px 0 5px; font-size:17px; }
+.guide-grid p { margin:0; font-size:13px; color:#5f6b60; line-height:1.85; }
+.guide-icon { color:#91a48d; font-size:12px; font-weight:800; letter-spacing:.12em; }
+.notes { margin:50px 0 0; border-top:1px solid var(--line); }
+.notes h3 { font-size:17px; margin:25px 0 10px; }
+.notes details { border-bottom:1px solid var(--line); padding:12px 0; }
+.notes summary { cursor:pointer; font-weight:700; color:#314b39; }
+.notes details p { font-size:13px; color:#5d6d60; margin:10px 0 4px; }
+.affiliate-section { padding-top:45px; }
+.ad-notice { font-size:12px; color:#667769; }
+.affiliate-items { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
+.affiliate-item { padding:17px; border:1px solid var(--line); background:white; }
+.affiliate-item a { display:block; font-weight:700; }
+.affiliate-item p { margin:4px 0 0; color:#657668; font-size:12px; }
+.bottom-note { max-width:1190px; padding:52px 30px 70px; margin:25px auto 0; border-top:1px solid var(--line); }
+.bottom-note h2 { font-size:20px; margin:0 0 13px; }
+.bottom-note p { color:#68766a; font-size:13px; max-width:660px; }
+.bottom-note a { display:inline-block; margin-top:10px; border:1px solid var(--green); padding:8px 18px; text-decoration:none; font-weight:700; }
+footer { background:#e7ece4; padding:22px max(30px, calc((100vw - 1130px)/2)); display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; font-size:11px; color:#647365; }
+[hidden] { display:none !important; }
+@media (max-width:860px) { .workspace { grid-template-columns:1fr; } .controls { max-width:650px; } .preview-side { width:100%; } .hero { padding-top:53px; padding-bottom:44px; } .tool-section { padding:34px 25px; } }
+@media (max-width:550px) { .header-inner { padding:12px 18px; } .header-note { font-size:10px; } .hero { padding:43px 21px 40px; } .hero h1 { font-size:37px; } .tool-section { padding:30px 16px 34px; } .tab { padding:12px 9px; flex:1; font-size:13px; } .workspace { gap:25px; } .preview-window { padding:10px 5px; } .section-heading h2 { font-size:25px; } .guide-section,.affiliate-section { padding:45px 20px 8px; } .guide-grid,.affiliate-items { grid-template-columns:1fr; gap:22px; } .bottom-note { padding:40px 20px; } .field-row { gap:9px; } }
+@page { size:A4 portrait; margin:0; }
+@media print {
+  html,body { margin:0 !important; padding:0 !important; width:210mm; height:auto; background:white !important; }
+  body > header, body > main > :not(.tool-section), body > footer, .tool-section > :not(.workspace), .workspace > .controls, .preview-head, .preview-foot { display:none !important; }
+  .tool-section, .workspace, .preview-side, .preview-window, #printArea { display:block !important; margin:0 !important; padding:0 !important; border:0 !important; background:white !important; overflow:visible !important; width:210mm !important; max-width:none !important; min-height:0 !important; }
+  .paper-holder { width:210mm !important; height:297mm !important; margin:0 !important; padding:0 !important; break-after:page; page-break-after:always; }
+  .paper-holder:last-child { break-after:auto; page-break-after:auto; }
+  .print-sheet { position:static !important; transform:none !important; box-shadow:none !important; width:210mm !important; height:297mm !important; }
+  .tray-cell span { font-size:11pt; }
+}
