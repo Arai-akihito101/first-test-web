@@ -1,0 +1,28 @@
+name: Garden label checks
+on:
+  pull_request:
+    paths:
+      - 'garden-label/**'
+      - 'tests/**'
+      - '.github/workflows/garden-label-test.yml'
+  push:
+    paths:
+      - 'garden-label/**'
+      - 'tests/**'
+      - '.github/workflows/garden-label-test.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: |
+          node --check garden-label/app.js
+          node --check garden-label/logic.mjs
+          node --check garden-label/affiliate.js
+      - name: Test calculator logic
+        run: node --test tests/logic.test.mjs
