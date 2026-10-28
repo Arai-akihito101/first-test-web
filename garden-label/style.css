@@ -109,3 +109,9 @@ footer { background:#e7ece4; padding:22px max(30px, calc((100vw - 1130px)/2)); d
   .print-sheet { position:static !important; transform:none !important; box-shadow:none !important; width:210mm !important; height:297mm !important; }
   .tray-cell span { font-size:11pt; }
 }
+
+/* 一括ラベル入力 */
+.mode-switch { display:flex; align-items:center; gap:10px; border:1px solid #c5d4c5; background:#f4f7f2; padding:13px 11px; font-size:13px; font-weight:800; margin:0 0 20px; cursor:pointer; }
+.mode-switch input { width:19px; height:19px; accent-color:var(--green); flex:none; }
+.primary-btn:disabled { opacity:.55; cursor:not-allowed; }
+@media print { .mode-switch { display:none !important; } }
