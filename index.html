@@ -1,55 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>かんたん文字数カウンター</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 60px auto;
-      padding: 20px;
-    }
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      height: 200px;
-      padding: 12px;
-      font-size: 16px;
-    }
-    .count {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-  </style>
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="0; url=/garden-label/">
+  <link rel="canonical" href="https://first-test-web.pages.dev/garden-label/">
+  <title>育苗シート工房へ移動中</title>
+  <script>location.replace("/garden-label/");</script>
 </head>
 <body>
-  <h1>文字数カウンター</h1>
-  <p>文章を入力すると文字数を自動で数えます。</p>
-
-  <textarea id="text" placeholder="ここに文章を入力"></textarea>
-  <button onclick="clearText()">文章を消去</button>
-  <div class="count">
-    文字数：<span id="count">0</span>
-  </div>
-
-  <section style="margin-top:34px;padding:20px;border:1px solid #d9ded5;background:#f5f7f3">
-    <strong>新しい無料ツール</strong>
-    <p style="margin:6px 0 11px">家庭菜園向けの苗ラベル・種まきトレー配置図をA4印刷できます。</p>
-    <a href="/garden-label/">育苗シート工房を使う →</a>
-  </section>
-  <script>
-    const text = document.getElementById("text");
-    const count = document.getElementById("count");
-
-    text.addEventListener("input", () => {
-      count.textContent = Array.from(text.value).length;
-    });
- function clearText() {
-  document.getElementById("text").value = "";
-  document.getElementById("count").textContent = "0";
-} </script>
+  <p>育苗シート工房へ移動します。自動で切り替わらない場合は<a href="/garden-label/">こちらから開いてください</a>。</p>
 </body>
 </html>
