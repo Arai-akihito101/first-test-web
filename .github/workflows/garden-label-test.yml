@@ -24,5 +24,5 @@ jobs:
           node --check garden-label/app.js
           node --check garden-label/logic.mjs
           node --check garden-label/affiliate.js
-      - name: Test calculator logic
-        run: node --test tests/logic.test.mjs
+      - name: Test app logic and internal links
+        run: node --test tests/*.test.mjs
