@@ -23,7 +23,11 @@ jobs:
             if curl --fail --location --silent --show-error --max-time 15 "$url" -o /tmp/garden.html &&
                grep -q '複数品種をまとめて印刷する' /tmp/garden.html &&
                curl --fail --location --silent --show-error --max-time 15 "https://first-test-web.pages.dev/garden-label/logic.mjs" -o /tmp/logic.mjs &&
-               grep -q 'makeBatchLabelEntries' /tmp/logic.mjs; then
+               grep -q 'makeBatchLabelEntries' /tmp/logic.mjs &&
+               curl --fail --location --silent --show-error --max-time 15 "https://first-test-web.pages.dev/garden-label/guide.html" -o /tmp/guide.html &&
+               grep -q '苗ラベルの作り方' /tmp/guide.html &&
+               curl --fail --location --silent --show-error --max-time 15 "https://first-test-web.pages.dev/sitemap.xml" -o /tmp/sitemap.xml &&
+               grep -q 'garden-label/guide.html' /tmp/sitemap.xml; then
               echo "Live site is serving the current app."
               exit 0
             fi
