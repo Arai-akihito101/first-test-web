@@ -41,3 +41,29 @@ export function makeTrayCells({rows, cols, plants}) {
     name: names.length ? names[index % names.length] : '',
   }));
 }
+
+/**
+ * 複数品種の一括印刷。
+ * 1行: 植物名 | 品種（任意） | 枚数（任意・初期1）
+ * 端末内のみで処理し、枚数は合計240枚まで。
+ */
+export function makeBatchLabelEntries({text, date = '', note = '', sequence = false}) {
+  const lines = String(text ?? '').split(/\r?\n/).slice(0, 100);
+  const entries = [];
+  let truncated = false;
+  let groups = 0;
+  for (const line of lines) {
+    const [rawCrop = '', rawVariety = '', rawCount = ''] = line.split(/[|｜]/);
+    const crop = safeText(rawCrop, 32);
+    if (!crop) continue;
+    const count = clampInteger(rawCount.trim(), 1, 240, 1);
+    const available = 240 - entries.length;
+    if (count > available) truncated = true;
+    if (available === 0) break;
+    entries.push(...makeLabelEntries({crop, variety:rawVariety, date, note,
+      count: Math.min(count, available), sequence}));
+    groups++;
+  }
+  if (String(text ?? '').split(/\r?\n/).length > 100) truncated = true;
+  return {entries, truncated, groups};
+}

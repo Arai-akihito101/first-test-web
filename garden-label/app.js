@@ -1,8 +1,8 @@
-import {LABEL_PRESETS, clampInteger, normalizePlants, makeLabelEntries, paginate, makeTrayCells, safeText} from './logic.mjs';
+import {LABEL_PRESETS, clampInteger, normalizePlants, makeLabelEntries, makeBatchLabelEntries, paginate, makeTrayCells, safeText} from './logic.mjs';
 import {affiliateLinks, supportUrl} from './affiliate.js';
 
 const $ = id => document.getElementById(id);
-const formIds = ['crop','variety','sowDate','labelCount','note','preset','numbered','trayTitle','trayRows','trayCols','trayDate','trayPlants'];
+const formIds = ['bulkMode','batchRows','crop','variety','sowDate','labelCount','note','preset','numbered','trayTitle','trayRows','trayCols','trayDate','trayPlants'];
 let currentTab = 'labels';
 let resizeObserver;
 const formDefaults = Object.fromEntries(formIds.map(id=>[id, $(id).type === 'checkbox' ? $(id).checked : $(id).value]));
@@ -81,15 +81,26 @@ function render() {
   let sheets;
   if (currentTab === 'labels') {
     const preset = LABEL_PRESETS[$('preset').value] || LABEL_PRESETS.standard;
-    const entries = makeLabelEntries({
+    const isBulk = $('bulkMode').checked;
+    $('singleFields').hidden = isBulk;
+    $('bulkFields').hidden = !isBulk;
+    const batch = isBulk ? makeBatchLabelEntries({
+      text:$('batchRows').value, date:formatDate($('sowDate').value),
+      note:$('note').value, sequence:$('numbered').checked,
+    }) : null;
+    const entries = batch ? batch.entries : makeLabelEntries({
       crop:$('crop').value, variety:$('variety').value,
       date:formatDate($('sowDate').value), note:$('note').value,
       count:$('labelCount').value, sequence:$('numbered').checked,
     });
-    sheets = paginate(entries, preset.cols*preset.rows).map(page=>makeLabelPage(page,preset));
-    $('status').textContent = `${entries.length}枚のラベルを作成しました。印刷画面でA4を選んでください。`;
+    sheets = entries.length ? paginate(entries, preset.cols*preset.rows).map(page=>makeLabelPage(page,preset)) : [];
+    $('printBtn').disabled = entries.length === 0;
+    $('status').textContent = entries.length
+      ? `${entries.length}枚のラベルを作成しました。${batch?.truncated ? '上限240枚を超える分は省略しました。' : ''}印刷画面でA4を選んでください。`
+      : '植物名を入力してください。ラベルがない場合は印刷できません。';
   } else {
     sheets = [makeTrayPage()];
+    $('printBtn').disabled = false;
     const count = clampInteger($('trayRows').value,1,12,4)*clampInteger($('trayCols').value,1,12,6);
     $('status').textContent = `${count}マスの配置図を作成しました。`;
   }
