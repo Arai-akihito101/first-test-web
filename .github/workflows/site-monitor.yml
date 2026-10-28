@@ -1,0 +1,34 @@
+name: 公開サイトの自動確認
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 0 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/site-monitor.yml'
+permissions:
+  contents: read
+jobs:
+  live-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Check live Cloudflare site (with deployment retry)
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://first-test-web.pages.dev/garden-label/"
+          for attempt in {1..12}; do
+            if curl --fail --location --silent --show-error --max-time 15 "$url" -o /tmp/garden.html &&
+               grep -q '複数品種をまとめて印刷する' /tmp/garden.html &&
+               curl --fail --location --silent --show-error --max-time 15 "https://first-test-web.pages.dev/garden-label/logic.mjs" -o /tmp/logic.mjs &&
+               grep -q 'makeBatchLabelEntries' /tmp/logic.mjs; then
+              echo "Live site is serving the current app."
+              exit 0
+            fi
+            echo "Live site is not ready (attempt ${attempt}/12)."
+            sleep 15
+          done
+          echo "::error::Cloudflare Pages site is unreachable or does not have the latest app."
+          exit 1
